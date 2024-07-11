@@ -3940,12 +3940,15 @@ function instance$3($$self, $$props, $$invalidate) {
     initChart();
     updateChart();
   });
-  const changeFilters = () => {
-    console.log("filters changed", interval, startDate, endDate);
-    fetchData();
+  const debounce = (func, wait) => {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
   };
   let fetching;
-  const fetchData = () => {
+ const fetchData = debounce(() => {
     $$invalidate(3, fetching = true);
     apex.server.process(
       "GetExpandPerformance",
@@ -3964,20 +3967,33 @@ function instance$3($$self, $$props, $$invalidate) {
         }
       }
     );
+  }, 500);
+
+  const changeFilters = () => {
+    console.log("filters changed", interval, startDate, endDate);
+    fetchData();
   };
+
   const click_handler = () => set_store_value(screen, $screen = null, $screen);
+
   function selectbutton_value_binding(value) {
     interval = value;
     $$invalidate(0, interval);
+    changeFilters();
   }
+
   function datepicker0_value_binding(value) {
     startDate = value;
     $$invalidate(1, startDate);
+    changeFilters();
   }
+
   function datepicker1_value_binding(value) {
     endDate = value;
     $$invalidate(2, endDate);
+    changeFilters();
   }
+
   return [
     interval,
     startDate,
