@@ -4786,14 +4786,6 @@ function instance$2($$self, $$props, $$invalidate) {
       }
     ));
   };
-    const debounce = (func, wait) => {
-    let timeout;
-    return (...args) => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => func.apply(this, args), wait);
-    };
-  };
-
   const updateCharts = () => {
     totalChart.data.labels = [];
     totalChart.data.datasets = [];
@@ -4829,9 +4821,25 @@ function instance$2($$self, $$props, $$invalidate) {
       userChart.update();
     }
   };
-
-  const fetchData = debounce(() => {
-    $$invalidate(6, fetching = true);
+  onMount(() => {
+    initCharts();
+    updateCharts();
+    fetchData();
+  });
+  const changeFilters = () => {
+    console.log("filters changed", interval, startDate, endDate);
+    fetchData();
+  };
+ const debounce = (func, wait) => {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  };
+  let fetching;
+ const fetchData = debounce(() => {
+    $$invalidate(3, fetching = true);
     apex.server.process(
       "GetExpandPerformance",
       {
@@ -4842,55 +4850,38 @@ function instance$2($$self, $$props, $$invalidate) {
       },
       {
         success: (res) => {
-          $$invalidate(3, data = res);
-          $$invalidate(6, fetching = false);
+          console.log(res.data);
+          data = res.total;
+          $$invalidate(3, fetching = false);
           updateCharts();
         }
       }
     );
   }, 500);
-
-  const changeFilters = () => {
-    console.log("filters changed", interval, startDate, endDate);
-    fetchData();
-  };
-
-  onMount(() => {
-    initCharts();
-    updateCharts();
-    fetchData();
-  });
-
   const click_handler = () => set_store_value(screen, $screen = null, $screen);
-
   function selectbutton_value_binding(value) {
     interval = value;
     $$invalidate(0, interval);
     changeFilters();
   }
-
   function datepicker0_value_binding(value) {
     startDate = value;
     $$invalidate(1, startDate);
     changeFilters();
   }
-
   function datepicker1_value_binding(value) {
     endDate = value;
     $$invalidate(2, endDate);
     changeFilters();
   }
-
   function input_change_handler() {
     showAllInUserChart = this.checked;
     $$invalidate(5, showAllInUserChart);
   }
-
   const change_handler = (set, each_value, set_index) => {
     $$invalidate(4, each_value[set_index].hidden = !set.hidden, userChart);
     userChart.update();
   };
-
   return [
     interval,
     startDate,
