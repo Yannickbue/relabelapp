@@ -4787,6 +4787,7 @@ function instance$2($$self, $$props, $$invalidate) {
     ));
   };
   const updateCharts = () => {
+    console.log("Updating charts with data:", data);
     totalChart.data.labels = [];
     totalChart.data.datasets = [];
     totalChart.data.datasets.push({
