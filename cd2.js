@@ -4795,18 +4795,26 @@ function instance$2($$self, $$props, $$invalidate) {
       borderColor: "rgb(98, 142, 153)",
       data: []
     });
-    data.total.forEach((d) => {
-      totalChart.data.labels.push(d.INTERVAL);
-      totalChart.data.datasets[0].data.push(d.TEAM_ITEMS);
-    });
+        // Check if data.total exists before processing
+    if (data.total) {
+      data.total.forEach((d) => {
+        totalChart.data.labels.push(d.INTERVAL);
+        totalChart.data.datasets[0].data.push(d.TEAM_ITEMS);
+      });
+    } else {
+      console.error("data.total is undefined or null");
+    }
+
     totalChart.update();
+
+    // Check if data.users exists before processing
     if (data.users) {
       $$invalidate(4, userChart.data.labels = [], userChart);
       $$invalidate(4, userChart.data.datasets = [], userChart);
       data.users.forEach((d) => {
-        if (!userChart.data.labels.find((l) => l == d.INTERVAL))
+        if (!userChart.data.labels.find((l) => l === d.INTERVAL))
           userChart.data.labels.push(d.INTERVAL);
-        if (!userChart.data.datasets.find((s) => s.label == d.USERNAME)) {
+        if (!userChart.data.datasets.find((s) => s.label === d.USERNAME)) {
           userChart.data.datasets.push({ label: d.USERNAME, data: [] });
         }
       });
@@ -4814,11 +4822,13 @@ function instance$2($$self, $$props, $$invalidate) {
         userChart.data.datasets.forEach((u, index) => {
           u.backgroundColor = colors[index];
           u.borderColor = colors[index];
-          var line = data.users.find((d) => d.USERNAME == u.label && d.INTERVAL == i);
+          const line = data.users.find((d) => d.USERNAME === u.label && d.INTERVAL === i);
           u.data.push(line ? line.ITEMS : null);
         });
       });
       userChart.update();
+    } else {
+      console.error("data.users is undefined or null");
     }
   };
   onMount(() => {
