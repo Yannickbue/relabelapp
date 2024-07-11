@@ -3941,7 +3941,7 @@ function instance$3($$self, $$props, $$invalidate) {
     updateChart();
   });
   const changeFilters = () => {
-    console.log("filters changed", interval, startDate, endDate);
+    console.log("filters changed", interval);
     fetchData();
   };
   let fetching;
@@ -3951,9 +3951,7 @@ function instance$3($$self, $$props, $$invalidate) {
       "GetExpandPerformance",
       {
         x01: $user.SITE,
-        x02: interval,
-        x03: startDate,
-        x04: endDate
+        x02: interval
       },
       {
         success: (res) => {
@@ -4811,7 +4809,7 @@ function instance$2($$self, $$props, $$invalidate) {
     fetchData();
   });
   const changeFilters = () => {
-    console.log("filters changed", interval, startDate, endDate);
+    console.log("filters changed", interval);
     fetchData();
   };
   let fetching;
@@ -4821,9 +4819,7 @@ function instance$2($$self, $$props, $$invalidate) {
       "GetExpandPerformance",
       {
         x01: $user.SITE,
-        x02: interval,
-        x03: startDate,
-        x04: endDate
+        x02: interval
       },
       {
         success: (res) => {
