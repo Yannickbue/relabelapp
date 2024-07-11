@@ -4853,7 +4853,7 @@ function instance$2($$self, $$props, $$invalidate) {
           console.log(res.data);
           data = res.total;
           $$invalidate(3, fetching = false);
-          updateChart();
+          updateCharts();
         }
       }
     );
