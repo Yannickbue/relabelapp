@@ -4736,6 +4736,7 @@ function instance$2($$self, $$props, $$invalidate) {
   var totalChart;
   let userChart;
   let showAllInUserChart = true;
+  
   const setShowAllInUserChart = (e) => {
     document.getElementsByName("chkHide").forEach((chk) => {
       chk.checked = e.target.checked;
@@ -4850,7 +4851,7 @@ function instance$2($$self, $$props, $$invalidate) {
   };
   let fetching;
  const fetchData = debounce(() => {
-    $$invalidate(3, fetching = true);
+    $$invalidate(6, fetching = true);
     apex.server.process(
       "GetExpandPerformance",
       {
@@ -4860,10 +4861,9 @@ function instance$2($$self, $$props, $$invalidate) {
         x04: endDate
       },
       {
-        success: (res) => {
-          console.log(res.data);
-          data = res.total;
-          $$invalidate(3, fetching = false);
+        success: (res) => {          
+          $$invalidate(3, data = res);
+          $$invalidate(6, fetching = false);
           updateCharts();
         }
       }
