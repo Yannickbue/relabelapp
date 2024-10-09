@@ -5664,8 +5664,8 @@ function instance($$self, $$props, $$invalidate) {
       set_store_value(user, $user = res.data[0], $user);
       console.log("User info", $user);
       apex.item("P5_SITE").setValue($user.SITE);
-      fetchInsights();
       setInterval(fetchInsights, 3e5);
+      fetchInsights();     
     }
   });
   const fetchInsights = () => {
