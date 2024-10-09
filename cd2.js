@@ -1697,7 +1697,7 @@ function create_if_block$7(ctx) {
         dispose = [
           listen(button0, "click", prevent_default(ctx[2])),
           listen(button1, "click", prevent_default(ctx[3])),
-          listen(button2, "click", prevent_default(ctx[4]))
+          listen(button2, "click", prevent_default(fetchInsights))
         ];
         mounted = true;
       }
@@ -5672,8 +5672,8 @@ function instance($$self, $$props, $$invalidate) {
       set_store_value(user, $user = res.data[0], $user);
       console.log("User info", $user);
       apex.item("P5_SITE").setValue($user.SITE);
-      setInterval(fetchInsights, 1.2e6);
-      fetchInsights();     
+      //setInterval(fetchInsights, 1.2e6);
+      //fetchInsights();     
     }
   });
   const fetchInsights = () => {
