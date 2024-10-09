@@ -5693,11 +5693,21 @@ function instance($$self, $$props, $$invalidate) {
   return [$screen, $container, $prompt, $missingProducts, $missingPrices, click_handler];
 }
 function fetchInsights() {
-  apex.server.process("GetPerformance", { x01: $user.SITE }, {
+  apex.server.process("GetUserInfo", {}, {
     success: (res) => {
-      set_store_value(insights, $insights = res, $insights);
-      set_store_value(insights, $insights.labelledSinceUpdate = 0, $insights);
-      console.log("Insights data updated", $insights);
+      // Set the user information
+      set_store_value(user, $user = res.data[0], $user);
+      console.log("User info", $user);
+      apex.item("P5_SITE").setValue($user.SITE);
+
+      // Now run the GetPerformance process after user info is fetched
+      apex.server.process("GetPerformance", { x01: $user.SITE }, {
+        success: (res) => {
+          set_store_value(insights, $insights = res, $insights);
+          set_store_value(insights, $insights.labelledSinceUpdate = 0, $insights);
+          console.log("Insights data updated", $insights);
+        }
+      });
     }
   });
 }
