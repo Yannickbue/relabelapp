@@ -1671,9 +1671,9 @@ const ContainerHeader_svelte_svelte_type_style_lang = "";
 function create_if_block$7(ctx) {
   let button0;
   let t1;
-  //let t2;
+  let t2;
   let button1;
-  //let button2;
+  let button2;
   let mounted;
   let dispose;
   return {
@@ -1683,21 +1683,21 @@ function create_if_block$7(ctx) {
       t1 = space();
       button1 = element("button");
       button1.innerHTML = `Reset <i class="fa-solid fa-undo"></i>`;
-      //t2 = space();
-     // button2 = element("button");
-     // button2.innerHTML = `Refresh <i class="fa-solid fa-undo"></i>`;
+      t2 = space();
+      button2 = element("button");
+      button2.innerHTML = `Refresh Productivities <i class="fa-solid fa-undo"></i>`;
     },
     m(target, anchor) {
       insert(target, button0, anchor);
       insert(target, t1, anchor);
       insert(target, button1, anchor);
-      //insert(target, t2, anchor);
-     // insert(target, button2, anchor);
+      insert(target, t2, anchor);
+      insert(target, button2, anchor);
       if (!mounted) {
         dispose = [
           listen(button0, "click", prevent_default(ctx[2])),
-          listen(button1, "click", prevent_default(ctx[3]))
-         // listen(button2, "click", prevent_default(fetchInsights))
+          listen(button1, "click", prevent_default(ctx[3])),
+          listen(button2, "click", prevent_default(fetchInsights))
         ];
         mounted = true;
       }
