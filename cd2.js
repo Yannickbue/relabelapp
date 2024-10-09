@@ -1710,6 +1710,10 @@ function create_if_block$7(ctx) {
         detach(t1);
       if (detaching)
         detach(button1);
+       if (detaching)
+        detach(t2);
+      if (detaching)
+        detach(button2);
       mounted = false;
       run_all(dispose);
     }
