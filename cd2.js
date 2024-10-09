@@ -5680,7 +5680,7 @@ function instance($$self, $$props, $$invalidate) {
     apex.server.process("GetPerformance", { x01: $user.SITE }, {
       success: (res) => {
         set_store_value(insights, $insights = res, $insights);
-        //set_store_value(insights, $insights.labelledSinceUpdate = 0, $insights);
+        set_store_value(insights, $insights.labelledSinceUpdate = 0, $insights);
         console.log("Insights data updated", $insights);
       }
     });
