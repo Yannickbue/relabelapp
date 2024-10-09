@@ -1685,7 +1685,7 @@ function create_if_block$7(ctx) {
       button1.innerHTML = `Reset <i class="fa-solid fa-undo"></i>`;
       t2 = space();
       button2 = element("button");
-      button2.innerHTML = `Refresh Productivities <i class="fa-solid fa-undo"></i>`;
+      button2.innerHTML = `Refresh Team Performance <i class="fa-solid fa-undo"></i>`;
     },
     m(target, anchor) {
       insert(target, button0, anchor);
