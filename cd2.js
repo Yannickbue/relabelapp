@@ -5657,14 +5657,14 @@ function create_fragment(ctx) {
   };
 }
 function instance($$self, $$props, $$invalidate) {
-  let $insights;
+ // let $insights;
   let $user;
   let $screen;
   let $container;
   let $prompt;
   let $missingProducts;
   let $missingPrices;
-  component_subscribe($$self, insights, ($$value) => $$invalidate(6, $insights = $$value));
+  //component_subscribe($$self, insights, ($$value) => $$invalidate(6, $insights = $$value));
   component_subscribe($$self, user, ($$value) => $$invalidate(7, $user = $$value));
   component_subscribe($$self, screen, ($$value) => $$invalidate(0, $screen = $$value));
   component_subscribe($$self, container, ($$value) => $$invalidate(1, $container = $$value));
@@ -5687,9 +5687,9 @@ function instance($$self, $$props, $$invalidate) {
   const fetchInsights = () => {
     apex.server.process("GetPerformance", { x01: $user.SITE }, {
       success: (res) => {
-        set_store_value(insights, $insights = res, $insights);
-        set_store_value(insights, $insights.labelledSinceUpdate = 0, $insights);
-        console.log("Insights data updated", $insights);
+       // set_store_value(insights, $insights = res, $insights);
+       // set_store_value(insights, $insights.labelledSinceUpdate = 0, $insights);
+       // console.log("Insights data updated", $insights);
       }
     });
   };
