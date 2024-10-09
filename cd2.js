@@ -2080,7 +2080,7 @@ function instance$e($$self, $$props, $$invalidate) {
   let $user;
   let $container;
   let $prompt;
-  let $insights [0];
+  let $insights;
   component_subscribe($$self, user, ($$value) => $$invalidate(3, $user = $$value));
   component_subscribe($$self, container, ($$value) => $$invalidate(4, $container = $$value));
   component_subscribe($$self, prompt, ($$value) => $$invalidate(8, $prompt = $$value));
