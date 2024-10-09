@@ -1697,7 +1697,7 @@ function create_if_block$7(ctx) {
         dispose = [
           listen(button0, "click", prevent_default(ctx[2])),
           listen(button1, "click", prevent_default(ctx[3])),
-          listen(button2, "click", prevent_default(fetchInsights))
+          listen(button2, "click", prevent_default(ctx[3]))
         ];
         mounted = true;
       }
