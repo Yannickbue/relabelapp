@@ -2088,6 +2088,8 @@ function instance$e($$self, $$props, $$invalidate) {
   let printOnDemand = false;
   let errorMsg;
   let input;
+  let $insights;
+  component_subscribe($$self, insights, ($$value) => $$invalidate(6, $insights = $$value));
   onMount(() => input.focus());
   const scan = (e) => {
     if (e.keyCode == 13 || e.keyCode == 9) {
@@ -2134,6 +2136,8 @@ function instance$e($$self, $$props, $$invalidate) {
         },
         {
           success: (res) => {
+          set_store_value(insights, $insights = res, $insights);
+          set_store_value(insights, $insights.labelledSinceUpdate = 0, $insights);
             console.log(res);
           }
         }
