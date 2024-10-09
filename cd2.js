@@ -1671,9 +1671,9 @@ const ContainerHeader_svelte_svelte_type_style_lang = "";
 function create_if_block$7(ctx) {
   let button0;
   let t1;
-  let t2;
+  //let t2;
   let button1;
-  let button2;
+  //let button2;
   let mounted;
   let dispose;
   return {
@@ -1683,21 +1683,21 @@ function create_if_block$7(ctx) {
       t1 = space();
       button1 = element("button");
       button1.innerHTML = `Reset <i class="fa-solid fa-undo"></i>`;
-      t2 = space();
-      button2 = element("button");
-      button2.innerHTML = `Refresh Productivities <i class="fa-solid fa-undo"></i>`;
+      //t2 = space();
+     // button2 = element("button");
+     // button2.innerHTML = `Refresh <i class="fa-solid fa-undo"></i>`;
     },
     m(target, anchor) {
       insert(target, button0, anchor);
       insert(target, t1, anchor);
       insert(target, button1, anchor);
-      insert(target, t2, anchor);
-      insert(target, button2, anchor);
+      //insert(target, t2, anchor);
+     // insert(target, button2, anchor);
       if (!mounted) {
         dispose = [
           listen(button0, "click", prevent_default(ctx[2])),
-          listen(button1, "click", prevent_default(ctx[3])),
-          listen(button2, "click", prevent_default(fetchInsights))
+          listen(button1, "click", prevent_default(ctx[3]))
+         // listen(button2, "click", prevent_default(fetchInsights))
         ];
         mounted = true;
       }
@@ -2088,8 +2088,6 @@ function instance$e($$self, $$props, $$invalidate) {
   let printOnDemand = false;
   let errorMsg;
   let input;
-  //let $insights;
-  component_subscribe($$self, insights, ($$value) => $$invalidate(6, $insights = $$value));
   onMount(() => input.focus());
   const scan = (e) => {
     if (e.keyCode == 13 || e.keyCode == 9) {
@@ -5655,14 +5653,14 @@ function create_fragment(ctx) {
   };
 }
 function instance($$self, $$props, $$invalidate) {
- // let $insights;
+  let $insights;
   let $user;
   let $screen;
   let $container;
   let $prompt;
   let $missingProducts;
   let $missingPrices;
-  //component_subscribe($$self, insights, ($$value) => $$invalidate(6, $insights = $$value));
+  component_subscribe($$self, insights, ($$value) => $$invalidate(6, $insights = $$value));
   component_subscribe($$self, user, ($$value) => $$invalidate(7, $user = $$value));
   component_subscribe($$self, screen, ($$value) => $$invalidate(0, $screen = $$value));
   component_subscribe($$self, container, ($$value) => $$invalidate(1, $container = $$value));
@@ -5674,23 +5672,22 @@ function instance($$self, $$props, $$invalidate) {
       set_store_value(user, $user = res.data[0], $user);
       console.log("User info", $user);
       apex.item("P5_SITE").setValue($user.SITE);
-      //fetchInsights();    
-      //setInterval(fetchInsights, 3e5);
+      fetchInsights();    
+      setInterval(fetchInsights, 3e5);
     }
   });
-
-  const click_handler = () => set_store_value(screen, $screen = "printerSettings", $screen);
-  return [$screen, $container, $prompt, $missingProducts, $missingPrices, click_handler];
-}
   const fetchInsights = () => {
     apex.server.process("GetPerformance", { x01: $user.SITE }, {
       success: (res) => {
-       // set_store_value(insights, $insights = res, $insights);
-       // set_store_value(insights, $insights.labelledSinceUpdate = 0, $insights);
-       // console.log("Insights data updated", $insights);
+        set_store_value(insights, $insights = res, $insights);
+        //set_store_value(insights, $insights.labelledSinceUpdate = 0, $insights);
+        console.log("Insights data updated", $insights);
       }
     });
   };
+  const click_handler = () => set_store_value(screen, $screen = "printerSettings", $screen);
+  return [$screen, $container, $prompt, $missingProducts, $missingPrices, click_handler];
+}
 class App extends SvelteComponent {
   constructor(options) {
     super();
