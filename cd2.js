@@ -2089,11 +2089,13 @@ function instance$e($$self, $$props, $$invalidate) {
   let errorMsg;
   let input;
   //let $insights;
-  //component_subscribe($$self, insights, ($$value) => $$invalidate(6, $insights = $$value));
+  component_subscribe($$self, insights, ($$value) => $$invalidate(6, $insights = $$value));
   onMount(() => input.focus());
   const scan = (e) => {
     if (e.keyCode == 13 || e.keyCode == 9) {
       e.preventDefault();
+          set_store_value(insights, $insights = res, $insights);
+          set_store_value(insights, $insights.labelledSinceUpdate = 0, $insights);
       $$invalidate(1, errorMsg = null);
       var printRFID = e.target.value.startsWith("RFID");
       var bc = e.target.value.replace("RFID", "");
@@ -2136,8 +2138,6 @@ function instance$e($$self, $$props, $$invalidate) {
         },
         {
           success: (res) => {
-          set_store_value(insights, $insights = res, $insights);
-          set_store_value(insights, $insights.labelledSinceUpdate = 0, $insights);
             console.log(res);
           }
         }
