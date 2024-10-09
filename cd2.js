@@ -2080,7 +2080,7 @@ function instance$e($$self, $$props, $$invalidate) {
   let $user;
   let $container;
   let $prompt;
-  let $insights;
+  let $insights [0];
   component_subscribe($$self, user, ($$value) => $$invalidate(3, $user = $$value));
   component_subscribe($$self, container, ($$value) => $$invalidate(4, $container = $$value));
   component_subscribe($$self, prompt, ($$value) => $$invalidate(8, $prompt = $$value));
@@ -2094,8 +2094,6 @@ function instance$e($$self, $$props, $$invalidate) {
   const scan = (e) => {
     if (e.keyCode == 13 || e.keyCode == 9) {
       e.preventDefault();
-          set_store_value(insights, $insights = res, $insights);
-          set_store_value(insights, $insights.labelledSinceUpdate = 0, $insights);
       $$invalidate(1, errorMsg = null);
       var printRFID = e.target.value.startsWith("RFID");
       var bc = e.target.value.replace("RFID", "");
