@@ -4519,10 +4519,10 @@ function create_fragment$2(ctx) {
       append(div1, t8);
       mount_component(selectbutton, div1, null);
       
-      append(div1, t9);
-      mount_component(button2, div1, null);
-      //insert(target, t2, anchor);
-      //insert(target, button2, anchor);
+      //append(div1, t9);
+      //mount_component(button2, div1, null);
+      insert(target, t9, anchor);
+      insert(target, button2, anchor);
       
       append(div1, t19);
       mount_component(datepicker0, div1, null);
@@ -4629,7 +4629,7 @@ function create_fragment$2(ctx) {
       if (detaching)
         detach(main);
       destroy_component(selectbutton);
-      destroy_component(button2);
+      //destroy_component(button2);
       destroy_component(datepicker0);
       destroy_component(datepicker1);
       if (if_block0)
