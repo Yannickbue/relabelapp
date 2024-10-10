@@ -4546,7 +4546,7 @@ function create_fragment$2(ctx) {
       current = true;
       if (!mounted) {
         dispose = listen(div0, "click", ctx[10]);
-        dispose = listen(button2, "click",fetchInsights);
+        dispose = listen(button2, "click",fetchInsightss);
         mounted = true;
       }
     },
@@ -5705,7 +5705,7 @@ function instance($$self, $$props, $$invalidate) {
   const click_handler = () => set_store_value(screen, $screen = "printerSettings", $screen);
   return [$screen, $container, $prompt, $missingProducts, $missingPrices, click_handler];
 }
-function fetchInsights() {
+function fetchInsightss() {
   apex.server.process("GetUserInfo", {}, {
     success: (res) => {
       let $user; // Declare $user outside the set_store_value function
