@@ -4409,11 +4409,13 @@ function create_fragment$2(ctx) {
   let canvas1;
   let t17;
   let t18;
+  let t19;
   let p3;
   let main_intro;
   let current;
   let mounted;
   let dispose;
+  let button2;
   function selectbutton_value_binding(value) {
     ctx[11](value);
   }
@@ -4469,6 +4471,9 @@ function create_fragment$2(ctx) {
       t8 = space();
       create_component(selectbutton.$$.fragment);
       t9 = space();
+      button2 = element("button");
+      button2.innerHTML = `Refresh Team Performance <i class="fa-solid fa-undo"></i>`;
+      t19 = space();
       create_component(datepicker0.$$.fragment);
       t10 = space();
       create_component(datepicker1.$$.fragment);
@@ -4513,7 +4518,13 @@ function create_fragment$2(ctx) {
       append(div1, p2);
       append(div1, t8);
       mount_component(selectbutton, div1, null);
+      
       append(div1, t9);
+      mount_component(button2, div1, null);
+      //insert(target, t2, anchor);
+      //insert(target, button2, anchor);
+      
+      append(div1, t19);
       mount_component(datepicker0, div1, null);
       append(div1, t10);
       mount_component(datepicker1, div1, null);
@@ -4535,6 +4546,7 @@ function create_fragment$2(ctx) {
       current = true;
       if (!mounted) {
         dispose = listen(div0, "click", ctx[10]);
+        dispose = listen(button2, "click",fetchInsights);
         mounted = true;
       }
     },
@@ -4617,6 +4629,7 @@ function create_fragment$2(ctx) {
       if (detaching)
         detach(main);
       destroy_component(selectbutton);
+      destroy_component(button2);
       destroy_component(datepicker0);
       destroy_component(datepicker1);
       if (if_block0)
